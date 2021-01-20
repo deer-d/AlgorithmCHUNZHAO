@@ -18,4 +18,39 @@
 // 这里就需要去重和排序了。map 记录每个数字出现的次数，然后对 map 的 key 数组进行排序，最后在这个排序以后的数组里面扫，找到另外 2 个数字能和自己组成 0 的组合。
 
 
-// 需要考虑很对情况
+// 需要考虑很多情况
+
+// 双指针
+function threeSum(nums) {
+    nums.sort()
+    let res = []
+    for (let k = 0; k < nums.length - 2; k++) {
+        if (nums[k] > 0) break; // 因为是有序数组
+
+        if(nums[k] === nums[k-1]) continue; // 去重
+
+        let i = k + 1
+        let j  = nums.length - 1
+
+        while (i < j) {
+            let sum = nums[k] + nums[i] + nums[j];
+            if (sum === 0) {
+                res.push([nums[k],nums[i],nums[j]]);
+                while (i < j && nums[i] === nums[i+1]) i++; // 去重
+                while (i < j && nums[j] === nums[j-1]) j--; // 去重
+                i++
+                j--
+            }
+            else if (sum < 0) {
+                while (i < j && nums[i] === nums[i+1]) i++; // 去重
+            }
+            else if (sum > 0) {
+                while (i < j && nums[j] === nums[j-1]) j--; // 去重
+            }
+        }
+    }
+    return res
+}
+
+console.log(threeSum([-1,0,1,2,-1,-4,-2,-3,3,0,4]))
+

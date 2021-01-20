@@ -31,7 +31,7 @@ function twoSum1(nums, target) {
 
 }
 
-// 方法二
+// 方法二 对撞指针
 function twoSum2(nums, target) {
     nums.sort();
     let l = 0
