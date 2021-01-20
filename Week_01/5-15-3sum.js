@@ -40,6 +40,7 @@ function threeSum(nums) {
                 while (i < j && nums[j] === nums[j-1]) j--; // 去重
                 i++
                 j--
+
             }
             else if (sum < 0) {
                 while (i < j && nums[i] === nums[i+1]) i++; // 去重
