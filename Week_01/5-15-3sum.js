@@ -27,7 +27,7 @@ function threeSum(nums) {
     for (let k = 0; k < nums.length - 2; k++) {
         if (nums[k] > 0) break; // 因为是有序数组
 
-        if(nums[k] === nums[k-1]) continue; // 去重
+        if(k > 0 && nums[k] === nums[k-1]) continue; // 去重
 
         let i = k + 1
         let j  = nums.length - 1
@@ -43,9 +43,11 @@ function threeSum(nums) {
             }
             else if (sum < 0) {
                 while (i < j && nums[i] === nums[i+1]) i++; // 去重
+                i++
             }
             else if (sum > 0) {
                 while (i < j && nums[j] === nums[j-1]) j--; // 去重
+                j--
             }
         }
     }
