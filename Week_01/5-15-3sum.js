@@ -22,7 +22,7 @@
 
 // 双指针
 function threeSum(nums) {
-    nums.sort()
+    nums.sort((a, b) => (a - b))
     let res = []
     for (let k = 0; k < nums.length - 2; k++) {
         if (nums[k] > 0) break; // 因为是有序数组
