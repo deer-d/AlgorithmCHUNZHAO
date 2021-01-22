@@ -11,8 +11,7 @@
 
 // 时间复杂度 O(N)
 // 最优解
-// 往中间收
-
+// 双指针 往中间收
 function findMostWater(height) {
     let max = 0
     let start = 0
