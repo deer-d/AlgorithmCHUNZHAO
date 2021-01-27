@@ -1,7 +1,7 @@
-// 590. N叉树的后序遍历
+// 589. N叉树的前序遍历
 /**
  * // Definition for a Node.
- * function Node(val,children) {
+ * function Node(val, children) {
  *    this.val = val;
  *    this.children = children;
  * };
@@ -11,7 +11,7 @@
  * @param {Node} root
  * @return {number[]}
  */
-var postorder = function(root) {
+var preorder = function(root) {
     var result = [];
     traversal(root, result);
     return result;
@@ -19,8 +19,9 @@ var postorder = function(root) {
 
 function traversal (root, result) {
     if (root === null) return;
+    result.push(root.val) // 中
     for (let i = 0; i < root.children.length; i++) { // 子孩子
+        result.push(root.children[i])
         traversal(root.children[i], result);
     }
-    result.push(root.val) // 中
 }
