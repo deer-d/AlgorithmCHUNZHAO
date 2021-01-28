@@ -1,5 +1,5 @@
 学习笔记
-## 树、二叉树、二叉搜索树
+## 一、树、二叉树、二叉搜索树
 #### 【 1 树、二叉树、二叉搜索树的实现和特性】
 1.二叉树的遍历
 前序：根 左 右
@@ -27,7 +27,7 @@ N 叉树的后序遍历（亚马逊在半年内面试中考过）
 N 叉树的前序遍历（亚马逊在半年内面试中考过）
 N 叉树的层序遍历
 
-## 堆、二叉堆、图
+## 二、堆、二叉堆、图
 ###【1 堆和二叉堆的实现和特性】
 1.堆有很多实现形式，二叉堆效率不是最高的
 
@@ -43,3 +43,37 @@ N 叉树的层序遍历
 丑数（字节跳动在半年内面试中考过）
 前 K 个高频元素（亚马逊在半年内面试中常考）
 
+### 【3 图的实现和特性】
+* 代码模板 记下来
+* 思考题
+
+自己画一下有向有权图
+* 参考链接
+连通图个数 
+
+拓扑排序（Topological Sorting）
+ 
+最短路径（Shortest Path）：Dijkstra 
+
+最小生成树（Minimum Spanning Tree） 
+
+
+## 三、泛型递归、数的递归
+###【1 递归的实现、特性、思维要点】
+```$xslt
+const recursion = (level, params) =>{   
+    // recursion terminator   
+    if(level > MAX_LEVEL){     
+        // process_result     
+        return    
+    }   
+
+    // process current level   
+    process(level, params)   
+
+    //drill down   
+    recursion(level+1, params)   
+
+    //clean current level status if needed   
+}
+```
