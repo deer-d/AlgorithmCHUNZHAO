@@ -20,4 +20,15 @@
 //
 // 所有节点的值都是唯一的。
 // p、q 为不同节点且均存在于给定的二叉树中。
-//
+
+// 后续遍历
+// https://leetcode-cn.com/problems/lowest-common-ancestor-of-a-binary-tree/solution/236-er-cha-shu-de-zui-jin-gong-gong-zu-xian-hou-xu/
+function lowestCommonAncestor(root, p, q) {
+    if(root == null || root === p || root === q) return root;
+    var left = lowestCommonAncestor(root.left, p, q);
+    var right = lowestCommonAncestor(root.right, p, q);
+    if (left === null && right === null) return null;  // 1.
+    if(left == null) return right;// 3.
+    if(right == null) return left;// 4.
+    return root;// 2. if(left != null and right != null)
+}
