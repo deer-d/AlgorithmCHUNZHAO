@@ -6,39 +6,40 @@
 // DFS 递归深搜即可
 
 // 解法三 回溯（参考回溯模板，类似DFS）
-var result = []
-var dict = {
-    "2" : ["a","b","c"],
-    "3" : ["d", "e", "f"],
-    "4" : ["g", "h", "i"],
-    "5" : ["j", "k", "l"],
-    "6" : ["m", "n", "o"],
-    "7" : ["p", "q", "r", "s"],
-    "8" : ["t", "u", "v"],
-    "9" : ["w", "x", "y", "z"],
-}
 
-var letterCombinationsBT = function () {
-    result = []
+
+var letterCombinations = function (digits) {
+    var map = {
+        "2" : ["a","b","c"],
+        "3" : ["d", "e", "f"],
+        "4" : ["g", "h", "i"],
+        "5" : ["j", "k", "l"],
+        "6" : ["m", "n", "o"],
+        "7" : ["p", "q", "r", "s"],
+        "8" : ["t", "u", "v"],
+        "9" : ["w", "x", "y", "z"],
+    }
+    var result = []
     if (digits === "") {
         return result
     }
-    letterFunc("", digits)
+
+    letterFunc("", digits, 0, result, map)
     return result
 }
 
-func letterFunc(res string, digits string) {
-    if digits == "" {
-        result = append(result, res)
+function letterFunc(s, digits, level, result, map) {
+    // terminator
+    if (level === digits.length) {
+        result.push(s)
         return
     }
 
-    k := digits[0:1]
-    digits = digits[1:]
-    for i := 0; i < len(dict[k]); i++ {
-        res += dict[k][i]
-        letterFunc(res, digits)
-        res = res[0 : len(res)-1]
+    // process
+    var letters = map[digits[level]]
+    for (let j = 0; j < letters.length; j++) {
+        // drill down
+        letterFunc(s + letters[j], digits, level + 1, result, map)
     }
 }
 
