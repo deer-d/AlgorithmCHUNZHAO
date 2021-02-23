@@ -56,7 +56,6 @@
 // public class Solution {
 //
 //     // 做加法
-//
 //     public List<String> generateParenthesis(int n) {
 //         List<String> res = new ArrayList<>();
 //         // 特判
@@ -95,3 +94,17 @@
 //     }
 // }
 //
+
+// BFS 实现
+var generateParenthesis = (n) => {
+    var res = [];
+    // 特判
+    if (n === 0) return res;
+
+    bfs("", n, res);
+    return res;
+}
+
+var bfs = (str, n, res) => {
+
+}
