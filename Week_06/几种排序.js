@@ -63,10 +63,9 @@ var quickSort = function (arr, begin, end) {
     quickSort(arr, begin, pivot - 1)
     quickSort(arr, pivot + 1, end)
 }
-
 var partition = function (a, begin, end) {
-    var pivot = end, // 设定基准值（pivot）
-        counter = begin;
+    var pivot = end // 设定基准值（pivot）
+    var counter = begin;
     for(let i = begin; i < end; i++) {
         if(a[i] < a[pivot]) {
             swap(a, i, counter);
@@ -76,7 +75,6 @@ var partition = function (a, begin, end) {
     swap(a, pivot, counter);
     return counter;
 }
-
 var swap = function (arr, p, q) {
     let temp = arr[p]
     arr[p] = arr[q]
@@ -93,7 +91,6 @@ var mergeSort = function (arr, left, right) {
 
     merge(arr, left, mid, right)
 }
-
 var merge = function (arr, left, mid, right) {
     let temp = [] // right - left + 1
     let i = left, j = mid + 1, k = 0
