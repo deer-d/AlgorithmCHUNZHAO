@@ -9,8 +9,8 @@ var bubble = function (arr) {
     var len = arr.length;
     for(var i = 0; i < len - 1; i++) {
         for(var j = 0; j < len - 1 - i; j++) {
-            if(arr[j] > arr[j+1]) {       // 相邻元素两两对比
-                var temp = arr[j+1];       // 元素交换
+            if(arr[j] > arr[j+1]) { // todo: j 相邻元素两两对比
+                var temp = arr[j+1];// 元素交换
                 arr[j+1] = arr[j];
                 arr[j] = temp;
             }
@@ -57,8 +57,77 @@ var quickSort = function (arr) {
     quickSort(arr, 0, pivot - 1)
     quickSort(arr, pivot + 1, high)
 }
-var partition = function (arr, low, high) {
-    var pivot = arr[high]
+var partition = function (arr, lo, hi) {
+    // // 将数组切分为 a[lo...i-1] a[i] a[i+1...hi]
+    // var i = lo, j = hi + 1  // 左右扫描指针
+    // var v = a[lo]; // 基准值
+    // while (true) {
+    //     // 扫描左右检查是否结束，并交换元素
+    //     while (a[++i] < v) { // a[i] < v, 增大 i
+    //         if (i === hi)  break
+    //     }
+    //     while (v < a[--j]) { // a[j] > v, 减小 j
+    //         if (j === lo) break
+    //     }
+    //     exch(a, i, j)
+    // }
+    // exch(arr, lo, j);
+    // return j;
+
+    var pivot = left,   // 设定基准值（pivot）
+        index = pivot + 1;
+    for(var i = index; i <= right; i++) {
+        if(arr[i] < arr[pivot]) {
+            swap(arr, i, index);
+            index++;
+        }
+    }
+    swap(arr, pivot, index - 1);
+    return index - 1;
+}
+
+function jsQuickSort(array) {
+    if (array.length <= 1) {
+        return array;
+    }
+    const pivotIndex = Math.floor(array.length / 2);
+    const pivot = array.splice(pivotIndex, 1)[0];  //从数组中取出我们的"基准"元素
+    const left = [], right = [];
+    array.forEach(item => {
+        if (item < pivot) {  //left 存放比 pivot 小的元素
+            left.push(item);
+        } else {  //right 存放大于或等于 pivot 的元素
+            right.push(item);
+        }
+    });
+    //至此，我们将数组分成了left和right两个部分
+    return jsQuickSort(left).concat(pivot, jsQuickSort(right));  //分而治之
+}
+
+// 5.归并排序
+var mergeSort = function (arr) {
+    var lo = 0, hi = arr.length - 1
+    if (lo <= hi) return
     
-} 
+    var mid = lo + (hi - lo) / 2
+    var aux = new Array(arr.length)
+    mergeSort(arr, lo, mid)
+    mergeSort(arr, mid + 1, hi)
+    merge(a, lo, mid, hi, aux)
+}
+
+var merge = function (a, lo, mid, hi, aux) {
+    let i = lo, j = mid + 1 
+    for (let k = lo; k <= hi; k++) { // 辅助数组
+        aux[k] = arr[k]
+    }
+    
+    for (let k = lo; k <= hi; k++) { //  返回原数组
+        if (i > mid)              a[k] = aux[j++]
+        else if (j > hi)          a[k] = aux[i++]
+        else if (aux[j] < aux[i]) a[k] = aux[j++]
+        else                      a[k] = aux[i++]
+        
+    }
+}
 ```
