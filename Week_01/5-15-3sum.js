@@ -22,37 +22,30 @@
 
 // 双指针
 function threeSum(nums) {
-    nums.sort((a, b) => (a - b))
-    let res = []
-    for (let k = 0; k < nums.length - 2; k++) {
-        if (nums[k] > 0) break; // 因为是有序数组
+    let ans = new Array();
+    let len = nums.length;
+    if(nums === null || len < 3) return ans;
 
-        if(k > 0 && nums[k] === nums[k-1]) continue; // 去重
-
-        let i = k + 1
-        let j  = nums.length - 1
-
-        while (i < j) {
-            let sum = nums[k] + nums[i] + nums[j];
-            if (sum === 0) {
-                res.push([nums[k],nums[i],nums[j]]);
-                while (i < j && nums[i] === nums[i+1]) i++; // 去重
-                while (i < j && nums[j] === nums[j-1]) j--; // 去重
-                i++
-                j--
-
+    nums.sort((a, b) => (a - b)) // 排序
+    for (let i = 0; i < len ; i++) {
+        if(nums[i] > 0) break; // 如果当前数字大于0，则三数之和一定大于0，所以结束循环
+        if(i > 0 && nums[i] === nums[i-1]) continue; // 去重
+        let L = i+1;
+        let R = len-1;
+        while(L < R){
+            let sum = nums[i] + nums[L] + nums[R];
+            if(sum === 0){
+                ans.push([nums[i],nums[L],nums[R]]);
+                while (L<R && nums[L] == nums[L+1]) L++; // 去重
+                while (L<R && nums[R] == nums[R-1]) R--; // 去重
+                L++;
+                R--;
             }
-            else if (sum < 0) {
-                while (i < j && nums[i] === nums[i+1]) i++; // 去重
-                i++
-            }
-            else if (sum > 0) {
-                while (i < j && nums[j] === nums[j-1]) j--; // 去重
-                j--
-            }
+            else if (sum < 0) L++;
+            else if (sum > 0) R--;
         }
     }
-    return res
+    return ans;
 }
 
 console.log(threeSum([-1,0,1,2,-1,-4,-2,-3,3,0,4]))
