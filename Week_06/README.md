@@ -1,7 +1,14 @@
 学习笔记
 
-##  排序算法
 
+## 排序算法
+
+### 1.几种排序算法
+```javascript
+// 算法四中的算法 https://www.cnblogs.com/devinkin/p/9892761.html#org3af0ed7
+```
+
+### 2.实战讲解
 
 ```js
 // 1. 冒泡排序
